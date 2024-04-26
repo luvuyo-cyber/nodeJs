@@ -40,6 +40,7 @@
 
 //listing 5.6
 const routeResponseMap = {
+    "/": "<h1>Welcome!</h1>",
     "/info": "<h1>Info Page</h1>",
     "/contact": "<h1>Contact Us</h1>",
     "/about": "<h1>Learn More About Us.</h1>",
@@ -56,7 +57,7 @@ const port = 3000,
         if (routeResponseMap[req.url]) {
             res.end(routeResponseMap[req.url]);
         } else {
-            res.end("<h1>Welcome!</h1>");
+            res.end("<h1>Error!</h1>");
         }
     });
 app.listen(port);
