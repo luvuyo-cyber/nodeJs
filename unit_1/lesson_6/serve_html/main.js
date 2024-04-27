@@ -122,5 +122,4 @@ const customReadFile = (file_path, res) => { //look for a file by the name reque
     }
 };
 
-//listing 6.5
 
