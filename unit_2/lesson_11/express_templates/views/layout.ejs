@@ -42,13 +42,11 @@
 
 <body>
 
-	<!--we install the layout package using: npm i express-ejs-layouts -S -->
-
-	<!--<div id="nav">NAVIGATION</div> <!-will show in index.js body. the navigation and footer bars-->
-
-	<%- include("partials/navigation") %> 
-		<%- body %> <!--represents the body of all ejs files-->
-			<div id="footer">FOOTER</div>
+	<% include partials/navigation %>
+	<div id="container">
+		<%- body %>
+	</div>
+	<div id="footer" class="block">FOOTER</div>
 
 
 </body>
