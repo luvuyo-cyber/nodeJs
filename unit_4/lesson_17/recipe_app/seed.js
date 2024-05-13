@@ -1,9 +1,9 @@
 "use strict";
-//if you want to add data in bulk to your application in development instead of entering new subscribers through the contact form
+
 const mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
 
-mongoose.connect( //setup the connection to the database 
+mongoose.connect(
   "mongodb://localhost:27017/recipe_db",
   { useNewUrlParser: true }
 );
@@ -28,14 +28,14 @@ var contacts = [
 ];
 
 Subscriber.deleteMany()
-  .exec() //remove all existing data
+  .exec()
   .then(() => {
     console.log("Subscriber data is empty!");
   });
 
 var commands = [];
 
-contacts.forEach(c => { //loop through subscriber objects to create promises
+contacts.forEach(c => {
   commands.push(
     Subscriber.create({
       name: c.name,
@@ -44,7 +44,7 @@ contacts.forEach(c => { //loop through subscriber objects to create promises
   );
 });
 
-Promise.all(commands) //log confirmation after promises resolve
+Promise.all(commands)
   .then(r => {
     console.log(JSON.stringify(r));
     mongoose.connection.close();

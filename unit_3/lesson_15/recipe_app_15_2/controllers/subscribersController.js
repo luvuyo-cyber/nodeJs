@@ -10,17 +10,17 @@ exports.getAllSubscribers = (req, res, next) => {
   });
 };
 
-exports.getSubscriptionPage = (req, res) => {
+exports.getSubscriptionPage = (req, res) => { //add an action to render the contact page from the views folder
   res.render("contact");
 };
 
-exports.saveSubscriber = (req, res) => {
+exports.saveSubscriber = (req, res) => { //add an action to save subscribers
   let newSubscriber = new Subscriber({
     name: req.body.name,
     email: req.body.email,
     zipCode: req.body.zipCode
-  });
-  newSubscriber.save((error, result) => {
+  }); //create a new subscriber
+  newSubscriber.save((error, result) => { //save a new subscriber
     if (error) res.send(error);
     res.render("thanks");
   });

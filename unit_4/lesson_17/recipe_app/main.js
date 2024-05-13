@@ -9,6 +9,8 @@ const express = require("express"),
   mongoose = require("mongoose"),
   Subscriber = require("./models/subscriber");
 
+mongoose.Promise = global.Promise;
+
 mongoose.connect(
   "mongodb://localhost:27017/recipe_db",
   { useNewUrlParser: true }
@@ -18,14 +20,6 @@ const db = mongoose.connection;
 
 db.once("open", () => {
   console.log("Successfully connected to MongoDB using Mongoose!");
-});
-
-var myQuery = Subscriber.findOne({
-  name: "Jon Wexler"
-}).where("email", /wexler/);
-
-myQuery.exec((error, data) => {
-  if (data) console.log(data.name);
 });
 
 app.set("port", process.env.PORT || 3000);
@@ -51,8 +45,8 @@ app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next
 app.get("/", homeController.index);
 app.get("/courses", homeController.showCourses);
 
-app.get("/contact", subscribersController.getSubscriptionPage); //add a GET route for the subscription page
-app.post("/subscribe", subscribersController.saveSubscriber); //add a POST route to handle subscription data
+app.get("/contact", subscribersController.getSubscriptionPage);
+app.post("/subscribe", subscribersController.saveSubscriber);
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);

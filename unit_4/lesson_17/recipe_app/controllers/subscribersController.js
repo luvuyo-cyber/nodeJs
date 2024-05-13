@@ -2,19 +2,19 @@
 
 const Subscriber = require("../models/subscriber");
 
-exports.getAllSubscribers = (req, res) => { //rewrite the getAllSubscribers action
+exports.getAllSubscribers = (req, res) => {
   Subscriber.find({})
-    .exec() //return a promise from the find query
-    .then(subscribers => { //send saved data to the next then code block
+    .exec()
+    .then(subscribers => {
       res.render("subscribers", {
         subscribers: subscribers
-      }); //serve results from the database
+      });
     })
-    .catch(error => { //catch errors that are rejected in the promise
+    .catch(error => {
       console.log(error.message);
       return [];
     })
-    .then(() => { //end the promise chain with a log message
+    .then(() => {
       console.log("promise complete");
     });
 };
@@ -29,10 +29,9 @@ exports.saveSubscriber = (req, res) => {
     email: req.body.email,
     zipCode: req.body.zipCode
   });
-  //modifying saveSubscriber to use promises
   newSubscriber
     .save()
-    .then(result => { //save a new subscriber with a promise return
+    .then(result => {
       res.render("thanks");
     })
     .catch(error => {

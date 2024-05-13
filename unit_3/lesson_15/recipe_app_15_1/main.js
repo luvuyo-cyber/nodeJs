@@ -44,13 +44,13 @@ app.use(homeController.logRequestPaths);
 app.get("/name", homeController.respondWithName);
 app.get("/items/:vegetable", homeController.sendReqParam);
 
-app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => {
-  // res.render("subscribers", { subscribers: req.data });
-  console.log(req.data);
-  res.send(req.data);
+app.get("/subscribers", subscribersController.getAllSubscribers, (req, res, next) => { //pass the request to the getAllSubscribers function
+  // res.render("subscribers", { subscribers: req.data }); //render a view called subscribers.ejs
+  console.log(req.data); //log data from the request object
+  res.send(req.data); //render the data on the browser window
 });
 
-app.get("/", homeController.index);
+app.get("/", homeController.index); 
 app.get("/courses", homeController.showCourses);
 app.get("/contact", homeController.showSignUp);
 app.post("/contact", homeController.postedContactForm);

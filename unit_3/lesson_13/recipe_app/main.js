@@ -5,30 +5,31 @@ const express = require("express"),
   errorController = require("./controllers/errorController"),
   homeController = require("./controllers/homeController"),
   layouts = require("express-ejs-layouts"),
-  MongoDB = require("mongodb").MongoClient,
+  MongoDB = require("mongodb").MongoClient, //require the MongoDB module
   dbURL = "mongodb://localhost:27017",
   dbName = "recipe_db";
 
 MongoDB.connect(
   dbURL,
-  (error, client) => {
+  (error, client) => { //setup a connection to your local database server
     if (error) throw error;
-    let db = client.db(dbName);
+    let db = client.db(dbName); //get the recipe_db database from your connection to the MongoDB server 
     db.collection("contacts")
       .find()
-      .toArray((error, data) => {
+      .toArray((error, data) => { //find all records in the contacts collection
         if (error) throw error;
-        console.log(data);
+        console.log(data); //print the results to the console
       });
 
+//to add a new item to the database
     db.collection("contacts").insert(
       {
         name: "Freddie Mercury",
         email: "fred@queen.com"
       },
-      (error, db) => {
+      (error, db) => { //insert a new contact into the database
         if (error) throw error;
-        console.log(db);
+        console.log(db); //log the resulting errors or saved item
       }
     );
   }
