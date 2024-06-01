@@ -16,9 +16,9 @@ module.exports = {
   },
   indexView: (req, res) => {
     if (req.query.format === "json") {
-      res.json(res.locals.courses);
+      res.json(res.locals.courses); //respond with json if format query params equals to json
     } else {
-      res.render("courses/index");
+      res.render("courses/index"); //respond with an ejs view if it doesn't equal json
     }
   },
   new: (req, res) => {

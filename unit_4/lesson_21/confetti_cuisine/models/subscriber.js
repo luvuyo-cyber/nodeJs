@@ -25,7 +25,7 @@ var subscriberSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Course"
       }
-    ]
+    ] //associate multiple courses
   },
   {
     timestamps: true

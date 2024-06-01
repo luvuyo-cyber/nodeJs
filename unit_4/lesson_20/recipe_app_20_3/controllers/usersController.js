@@ -63,9 +63,9 @@ module.exports = {
   },
   edit: (req, res, next) => {
     let userId = req.params.id;
-    User.findById(userId)
+    User.findById(userId) //locate user in database by their ID
       .then(user => {
-        res.render("users/edit", {
+        res.render("users/edit", { //render user edit page for a specific user in database
           user: user
         });
       })
@@ -76,7 +76,7 @@ module.exports = {
   },
   update: (req, res, next) => {
     let userId = req.params.id,
-      userParams = {
+      userParams = { //collect user parameters from request
         name: {
           first: req.body.first,
           last: req.body.last
@@ -85,12 +85,12 @@ module.exports = {
         password: req.body.password,
         zipCode: req.body.zipCode
       };
-    User.findByIdAndUpdate(userId, {
+    User.findByIdAndUpdate(userId, { //use to locate user by ID and update document record in one command
       $set: userParams
     })
       .then(user => {
         res.locals.redirect = `/users/${userId}`;
-        res.locals.user = user;
+        res.locals.user = user; //add user response as a local variable
         next();
       })
       .catch(error => {

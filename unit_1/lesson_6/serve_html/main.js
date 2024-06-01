@@ -74,6 +74,7 @@ const sendErrorResponse = res => { //create an error-handling function
 http
     .createServer((req, res) => {
         let url = req.url; //store the request's URL in a variable url
+        
         if (url.indexOf(".html") !== -1) { //check the URL to see whether it contains a file extension
             console.log("in html logic", url);
             res.writeHead(httpStatus.OK, {

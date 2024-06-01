@@ -1,6 +1,6 @@
 "use strict";
 
-const router = require("express").Router(),
+const router = require("express").Router(), //require express.js Router and courses controller
   coursesController = require("../controllers/coursesController");
 
 router.get("", coursesController.index, coursesController.indexView);
@@ -11,4 +11,4 @@ router.put("/:id/update", coursesController.update, coursesController.redirectVi
 router.get("/:id", coursesController.show, coursesController.showView);
 router.delete("/:id/delete", coursesController.delete, coursesController.redirectView);
 
-module.exports = router;
+module.exports = router; //export module router

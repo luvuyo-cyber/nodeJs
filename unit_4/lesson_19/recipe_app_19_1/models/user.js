@@ -45,14 +45,14 @@ userSchema.virtual("fullName").get(function() {
   return `${this.name.first} ${this.name.last}`;
 });
 
-userSchema.pre("save", function(next) {
-  let user = this;
-  if (user.subscribedAccount === undefined) {
-    Subscriber.findOne({
+userSchema.pre("save", function(next) { //set up the pre('save') hook
+  let user = this; //use function keyword in the callback
+  if (user.subscribedAccount === undefined) { //conditional check for existing subscriber connections
+    Subscriber.findOne({ //query for a single subscriber
       email: user.email
     })
       .then(subscriber => {
-        user.subscribedAccount = subscriber;
+        user.subscribedAccount = subscriber; //connect the user with a subscriber account
         next();
       })
       .catch(error => {

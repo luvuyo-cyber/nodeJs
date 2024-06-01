@@ -13,12 +13,12 @@ app.use(express.json());
 
 app.use((req, res, next) => { 
   console.log(`request made to: ${req.url}`);
+  console.log("request query", req.query);
   next();
 });
 
 app.post("/", (req, res) => { //create a new post route for the home page
   console.log("request body:", req.body); //log the request's body
-  console.log("request query", req.query); //for query strings. stored in object
   res.send("POST Successful!");
 });
 

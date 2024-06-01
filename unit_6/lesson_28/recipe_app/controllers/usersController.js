@@ -166,11 +166,11 @@ module.exports = {
     next();
   },
   verifyToken: (req, res, next) => {
-    let token = req.query.apiToken;
+    let token = req.query.apiToken; //taken token from params
     if (token) {
-      User.findOne({ apiToken: token })
+      User.findOne({ apiToken: token }) //search for user with the provided API token
         .then(user => {
-          if (user) next();
+          if (user) next(); //call next if user with API token exists
           else next(new Error("Invalid API token."));
         })
         .catch(error => {
@@ -186,7 +186,7 @@ module.exports = {
   //   else next(new Error("Invalid API token."));
   // },
 
-  apiAuthenticate: (req, res, next) => {
+  apiAuthenticate: (req, res, next) => { //authenticate with the passport.authenticate method
     passport.authenticate("local", (errors, user) => {
       if (user) {
         let signedToken = jsonWebToken.sign(

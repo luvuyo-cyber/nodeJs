@@ -137,15 +137,15 @@ module.exports = {
   },
   join: (req, res, next) => {
     let courseId = req.params.id,
-      currentUser = req.user;
-    if (currentUser) {
+      currentUser = req.user; //get course and current user ID from the request
+    if (currentUser) { //checks if user is logged in
       User.findByIdAndUpdate(currentUser, {
         $addToSet: {
-          courses: courseId
+          courses: courseId //update the user's courses field to contain the targeted course
         }
       })
         .then(() => {
-          res.locals.success = true;
+          res.locals.success = true; //respond with JSON object with a success indicator
           next();
         })
         .catch(error => {
@@ -157,10 +157,10 @@ module.exports = {
   },
   filterUserCourses: (req, res, next) => {
     let currentUser = res.locals.currentUser;
-    if (currentUser) {
-      let mappedCourses = res.locals.courses.map(course => {
+    if (currentUser) { //checks if user is logged in
+      let mappedCourses = res.locals.courses.map(course => { //modify course data to add flag indicating user association
         let userJoined = currentUser.courses.some(userCourse => {
-          return userCourse.equals(course._id);
+          return userCourse.equals(course._id); //check if course exists in user's courses array, returns a boolean
         });
         return Object.assign(course.toObject(), { joined: userJoined });
       });

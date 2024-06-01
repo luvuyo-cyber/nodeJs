@@ -14,12 +14,12 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(`request made to: ${req.url}`);
+  console.log("query string:", req.query)
   next();
 });
 
 app.post("/", (req, res) => {
   console.log(req.body);
-  console.log(req.query);
   res.send("POST Successful!");
 });
 //replacing a callback with a controller function in main.js

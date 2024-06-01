@@ -54,7 +54,7 @@ const port = 3000,
         res.writeHead(200, {
             "Content-Type": "text/html"
         });
-        if (routeResponseMap[req.url]) {
+        if (routeResponseMap[req.url]) { //checks if request route is defined in the map
             res.end(routeResponseMap[req.url]);
         } else {
             res.end("<h1>Error!</h1>");

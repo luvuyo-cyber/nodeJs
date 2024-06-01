@@ -21,8 +21,8 @@ db.once("open", () => { //log a message as soon as the database is connected
 
 //To create and save models in main.js
 // var subscriber1 = new Subscriber({ //method 1
-//   name: "Jon1 Wexler",
-//   email: "jon1@jon1wexler.com"
+//   name: "Luvuyo Mazibuko",
+//   email: "luvuyo@gmail.com"
 // }); //Instantiate a new subscriber
 
 // subscriber1.save((error, savedDocument) => { //save a subscriber to the database
@@ -32,8 +32,8 @@ db.once("open", () => { //log a message as soon as the database is connected
 
 // Subscriber.create( //method 2
 //   {
-//     name: "Jon2 Wexler",
-//     email: "jon2@jon2wexler.com"
+//     name: "Fisokuhle Mncube",
+//     email: "fisokuhle@gmail.com"
 //   },
 //   function (error, savedDocument) { //create and save a subscriber in a single step
 //     if (error) console.log(error);
@@ -42,11 +42,11 @@ db.once("open", () => { //log a message as soon as the database is connected
 // );
 
 var myQuery = Subscriber.findOne({
-  name: "Jon1 Wexler"
-}).where("email", /wexler/);
+  name: "Luvuyo Mazibuko"
+}).where("email", /luvuyo/);
 
 myQuery.exec((error, data) => { //runs a query with a callback function to handle errors and data
-  if (data) console.log(data.name);
+  if (data) console.log(data);
 });
 
 app.set("port", process.env.PORT || 3000);

@@ -66,10 +66,10 @@ userSchema.pre("save", function(next) {
   }
 });
 
-userSchema.pre("save", function(next) {
+userSchema.pre("save", function(next) { 
   let user = this;
   if (!user.apiToken) user.apiToken = randToken.generate(16);
-  next();
+  next(); //checks for existing apiToken and generate a new one
 });
 
 userSchema.plugin(passportLocalMongoose, {

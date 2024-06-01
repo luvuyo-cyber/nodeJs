@@ -64,7 +64,7 @@ router.use(errorController.logErrors);
 router.use(errorController.respondNoResourceFound);
 router.use(errorController.respondInternalError);
 
-app.use("/", router);
+app.use("/", router); //use the router object as a system for middleware and routing 
 
 app.listen(app.get("port"), () => {
   console.log(`Server running at http://localhost:${app.get("port")}`);
